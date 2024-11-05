@@ -8,9 +8,9 @@
 #include <cassert>
 #include <vector>
 
-char ver[10] = "0.2.1";
+char ver[10] = "0.2.2";
 char author[44] = "Чупиков Андрей | ostap_bender";
-
+int inp;
 
 using hwinfo::unit::bytes_to_MiB;
 using namespace std;
@@ -23,9 +23,6 @@ const auto ram = hwinfo::Memory();
 const auto batteries = hwinfo::getAllBatteries();
 const auto os = hwinfo::OS();
 const auto net = hwinfo::getAllNetworks();
-
-
-int inp = -1;
 
 int main()
 {
