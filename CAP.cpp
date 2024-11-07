@@ -52,11 +52,11 @@ int main()
 					std::cout << " Логические ядра: " << "\t\t" << cpu.numLogicalCores() << "\n";
 					std::cout << " Макс. Частота: " << "\t\t" << cpu.maxClockSpeed_MHz() << " GHz" << "\n";
 					std::cout << " Частота по умолчанию: " << "\t\t" << cpu.regularClockSpeed_MHz() << " GHz" << "\n\n\n";
-
 					std::cout << " Размер кэша:" << "\n";
 					std::cout << " >L1 \t\t\t\t" << cpu.L1CacheSize_Bytes() << " Кб\n";
 					std::cout << " >L2 \t\t\t\t" << cpu.L2CacheSize_Bytes() << " Кб\n";
 					std::cout << " >L3 \t\t\t\t" << cpu.L3CacheSize_Bytes() << " Кб\n\n";
+
 				}
 				std::cout << "------------------------------------------\n->1 CPU\n";
 				break;
@@ -71,7 +71,6 @@ int main()
 					std::cout << " Версия драйвера: " << "\t\t" << gpu.driverVersion() << "\n";
 					std::cout << " vendor_id: " << "\t\t\t" << gpu.vendor_id() << "\n";
 					std::cout << " device_id: " << "\t\t\t" << gpu.device_id() << "\n\n";
-
 				}
 
 				std::cout << "------------------------------------------\n->2 GPU\n";
@@ -117,9 +116,9 @@ int main()
 					std::cout << " Частота: " << "\t\t\t" << module.frequency_Hz/1000000 << " MHz" << "\n\n";
 				}
 
-				std::cout << " Память: " << "\t\t" << bytes_to_MiB(ram.total_Bytes()) << "MB" << "\n";
-				std::cout << " Используется: " << "\t\t" << bytes_to_MiB((ram.total_Bytes() - ram.free_Bytes())) << "MB" << "\n";
-				std::cout << " Доступно: " << "\t\t" << bytes_to_MiB(ram.free_Bytes()) << "MB" << "\n\n";
+				std::cout << " Память: " << "\t\t" << bytes_to_MiB(ram.total_Bytes()) << " MB" << "\n";
+				std::cout << " Используется: " << "\t\t" << bytes_to_MiB((ram.total_Bytes() - ram.free_Bytes())) << " MB" << "\n";
+				std::cout << " Доступно: " << "\t\t" << bytes_to_MiB(ram.free_Bytes()) << " MB" << "\n\n";
 
 				std::cout << "------------------------------------------\n->5 Оперативная память\n";
 
@@ -154,13 +153,17 @@ int main()
 			case 8:
 
 				system("CLS");
+
 				for (const auto& net : net)
 				{
-					std::cout << " interfaceIndex:" << "\t" << net.interfaceIndex() << "\n";
-					std::cout << " Описание:" << "\t\t" << net.description() << "\n";
-					std::cout << " MAC:" << "\t\t\t" << net.mac() << "\n";
-					std::cout << " ip4:" << "\t\t\t" << net.ip4() << "\n";
-					std::cout << " ip6:" << "\t\t\t" << net.ip6() << "\n\n";
+					if (net.ip4().size() > 0 || net.ip6().size() > 0)
+					{
+						std::cout << " interfaceIndex:" << "\t" << net.interfaceIndex() << "\n";
+						std::cout << " Описание:" << "\t\t" << net.description() << "\n";
+						std::cout << " MAC:" << "\t\t\t" << net.mac() << "\n";
+						std::cout << " ip4:" << "\t\t\t" << net.ip4() << "\n";
+						std::cout << " ip6:" << "\t\t\t" << net.ip6() << "\n\n";
+					}
 				}
 				std::cout << "------------------------------------------\n->8 Cеть\n";
 
