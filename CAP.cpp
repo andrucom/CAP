@@ -8,7 +8,7 @@
 #include <cassert>
 #include <vector>
 
-char ver[10] = "0.2.2 (3)";
+char ver[10] = "0.2.2";
 char author[44] = "Чупиков Андрей | ostap_bender";
 int inp;
 
@@ -24,16 +24,43 @@ const auto batteries = hwinfo::getAllBatteries();
 const auto os = hwinfo::OS();
 const auto net = hwinfo::getAllNetworks();
 
+void printMonitorInfo() {
+	// Получаем информацию о различный дисплеях
+	DISPLAY_DEVICE dd;
+	dd.cb = sizeof(dd);
+	int deviceIndex = 0;
+
+	while (EnumDisplayDevices(NULL, deviceIndex, &dd, 0)) {
+		
+
+		// Получение информации о конфигурации монитора
+		DEVMODE dm;
+		dm.dmSize = sizeof(dm);
+		if (EnumDisplaySettings(dd.DeviceName, ENUM_CURRENT_SETTINGS, &dm)) 
+		{
+			std::cout << "Монитор #" << deviceIndex + 1 <<": \t\t" << dd.DeviceName << "\n";
+			std::cout << " Имя: \t\t\t" << dm.dmDeviceName<< "\n";
+			std::cout << " Разрешение: \t\t" << dm.dmPelsWidth << "x" << dm.dmPelsHeight << "\n";
+			std::cout << " Частота обновления: \t" << dm.dmDisplayFrequency << " Гц" << "\n";
+			std::cout << " Цвет: \t\t\t" << dm.dmBitsPerPel << " бит" << "\n\n";
+		}
+		//else
+		//{
+		//	std::cerr << " Не удалось получить настройки дисплея или дисплей отсутствует!" << "\n\n";
+		//}
+
+		deviceIndex++;
+	}
+}
+
 int main()
 {
 	std::cout << "Версия" << "\t\t" << ver << "\n";
 	std::cout << "Разработчик" << "\t" << author << "\n";
 	std::cout << "--------------------------------------------" << "\n\n\n";
-	
-
 
 	do {
-		std::cout << "\n\n1 - CPU\t\t\t\t2 - GPU\t\t3 - Материнская плата\t\t4 - Диск\n5 - Оперативная память\t\t6 - Батарея\t7 - Оперативная система (OS)\t8 - Cеть \n88 - Благодарность\n ";
+		std::cout << "\n\n1 - CPU\t\t\t\t2 - GPU\t\t3 - Материнская плата\t\t4 - Диск\n5 - Оперативная память\t\t6 - Батарея\t7 - Оперативная система (OS)\t8 - Cеть\n9 - Дисплей\n88 - Благодарность\n ";
 		std::cout << "\n>>Ввод: "; 
 		std::cin >> inp;
 
@@ -169,6 +196,15 @@ int main()
 
 				break;
 
+			case 9:
+				system("CLS");
+
+				printMonitorInfo();
+
+				std::cout << "------------------------------------------\n->9 Дисплей\n";
+
+				break;
+
 			default:
 				system("CLS");
 
@@ -197,3 +233,6 @@ int main()
 
 	system("Pause");
 }
+
+
+
