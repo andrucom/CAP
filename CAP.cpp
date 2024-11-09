@@ -8,7 +8,7 @@
 #include <cassert>
 #include <vector>
 
-char ver[10] = "0.2.2";
+char ver[10] = "0.2.3";
 char author[44] = "Чупиков Андрей | ostap_bender";
 int inp;
 
@@ -77,7 +77,6 @@ int main()
 					std::cout << " Название: " << "\t\t\t" << cpu.modelName() << "\n";
 					std::cout << " Физические ядра: " << "\t\t" << cpu.numPhysicalCores() << "\n";
 					std::cout << " Логические ядра: " << "\t\t" << cpu.numLogicalCores() << "\n";
-					std::cout << " Макс. Частота: " << "\t\t" << cpu.maxClockSpeed_MHz() << " GHz" << "\n";
 					std::cout << " Частота по умолчанию: " << "\t\t" << cpu.regularClockSpeed_MHz() << " GHz" << "\n\n\n";
 					std::cout << " Размер кэша:" << "\n";
 					std::cout << " >L1 \t\t\t\t" << cpu.L1CacheSize_Bytes() << " Кб\n";
