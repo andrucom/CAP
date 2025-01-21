@@ -8,7 +8,7 @@
 #include <cassert>
 #include <vector>
 
-char ver[10] = "0.2.3";
+char ver[10] = "0.2.3(1)";
 char author[44] = "Чупиков Андрей | ostap_bender";
 int inp;
 
@@ -79,6 +79,7 @@ int main()
 					std::cout << " Логические ядра: " << "\t\t" << cpu.numLogicalCores() << "\n";
 					std::cout << " Частота по умолчанию: " << "\t\t" << cpu.regularClockSpeed_MHz() << " GHz" << "\n\n\n";
 					std::cout << " Размер кэша:" << "\n";
+					std::cout << " !Может выводить некорректную информацию!" << "\n";
 					std::cout << " >L1 \t\t\t\t" << cpu.L1CacheSize_Bytes() << " Кб\n";
 					std::cout << " >L2 \t\t\t\t" << cpu.L2CacheSize_Bytes() << " Кб\n";
 					std::cout << " >L3 \t\t\t\t" << cpu.L3CacheSize_Bytes() << " Кб\n\n";
@@ -166,10 +167,13 @@ int main()
 			case 7:
 				system("CLS");
 				std::cout << " Имя:" << "\t\t" << os.name() << "\n";
+				if (os.is32bit())  std::cout << " Система: \t32 бита\n";
+				if (os.is64bit())  std::cout << " Система: \t64 бита\n";
 				std::cout << " Сборка:" << "\t" << os.version() << "\n";
 				std::cout << " Ядро:" << "\t\t" << os.kernel() << "\n";
-				std::cout << " 32 бит:" << "\t" << os.is32bit() << "\n";
-				std::cout << " 64 бит:" << "\t" << os.is64bit() << "\n\n";
+				std::cout << "\n\n";
+				//std::cout << " 32 бит:" << "\t" << os.is32bit() << "\n";
+				//std::cout << " 64 бит:" << "\t" << os.is64bit() << "\n\n";
 				std::cout << "------------------------------------------\n->7 Операционная система\n";
 
 
