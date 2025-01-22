@@ -8,7 +8,7 @@
 #include <cassert>
 #include <vector>
 
-char ver[10] = "0.2.3(1)";
+char ver[10] = "0.2.3(2)";
 char author[44] = "Чупиков Андрей | ostap_bender";
 int inp;
 
@@ -69,40 +69,47 @@ int main()
 			case 0:
 				std::cout << "\n\n << ЗАВЕРШЕНИЕ ПРОГРАММЫ >>" << "\n\n";
 				break;
+			// CPU
 			case 1:
 				system("CLS");
 
 				for (const auto& cpu : cpus)
 				{
-					std::cout << " Название: " << "\t\t\t" << cpu.modelName() << "\n";
+					std::cout << " Производитель: " << "\t\t" << cpu.vendor() << "\n";
+					std::cout << " Название: " << "\t\t\t" << cpu.modelName() << "\n\n";
+
 					std::cout << " Физические ядра: " << "\t\t" << cpu.numPhysicalCores() << "\n";
 					std::cout << " Логические ядра: " << "\t\t" << cpu.numLogicalCores() << "\n";
-					std::cout << " Частота по умолчанию: " << "\t\t" << cpu.regularClockSpeed_MHz() << " GHz" << "\n\n\n";
+					std::cout << " Частота по умолчанию: " << "\t\t" << cpu.regularClockSpeed_MHz() << " MHz" << "\n\n\n";
+
 					std::cout << " Размер кэша:" << "\n";
 					std::cout << " !Может выводить некорректную информацию!" << "\n";
 					std::cout << " >L1 \t\t\t\t" << cpu.L1CacheSize_Bytes() << " Кб\n";
 					std::cout << " >L2 \t\t\t\t" << cpu.L2CacheSize_Bytes() << " Кб\n";
 					std::cout << " >L3 \t\t\t\t" << cpu.L3CacheSize_Bytes() << " Кб\n\n";
-
 				}
 				std::cout << "------------------------------------------\n->1 CPU\n";
 				break;
+			// GPU
 			case 2:
 				system("CLS");
 
 				for (const auto& gpu : gpus)
 				{
+					
 					std::cout << " Производитель: " << "\t\t" << gpu.vendor() << "\n";
 					std::cout << " Наименование: " << "\t\t\t" << gpu.name() << "\n";
-					std::cout << " Память: " << "\t\t\t" << bytes_to_MiB(gpu.memory_Bytes()) << " MB" << "\n";
+					std::cout << " Видеопамять: " << "\t\t\t" << bytes_to_MiB(gpu.memory_Bytes()) << " MB" << "\n";
 					std::cout << " Версия драйвера: " << "\t\t" << gpu.driverVersion() << "\n";
+					std::cout << "---\n";
 					std::cout << " vendor_id: " << "\t\t\t" << gpu.vendor_id() << "\n";
-					std::cout << " device_id: " << "\t\t\t" << gpu.device_id() << "\n\n";
+					std::cout << " device_id: " << "\t\t\t" << gpu.device_id() << "\n\n\n";
 				}
 
 				std::cout << "------------------------------------------\n->2 GPU\n";
 
 				break;
+			// MAINBOARD
 			case 3:
 				system("CLS");
 
@@ -114,7 +121,7 @@ int main()
 
 				std::cout << "------------------------------------------\n->3 Материнская плата\n";
 				break;
-
+			// DISK
 			case 4: 
 				system("CLS");
 
@@ -129,6 +136,7 @@ int main()
 
 				std::cout << "------------------------------------------\n->4 Диск \n";
 				break; 
+			// RAM
 			case 5:
 
 				system("CLS");
@@ -150,6 +158,7 @@ int main()
 				std::cout << "------------------------------------------\n->5 Оперативная память\n";
 
 				break;
+			// BATTERIES
 			case 6:
 
 				system("CLS");
@@ -163,7 +172,7 @@ int main()
 				std::cout << "------------------------------------------\n->6 Батарея\n";
 
 				break;
-
+			// OS
 			case 7:
 				system("CLS");
 				std::cout << " Имя:" << "\t\t" << os.name() << "\n";
@@ -179,7 +188,7 @@ int main()
 
 
 				break;
-
+			// NET
 			case 8:
 
 				system("CLS");
@@ -198,7 +207,7 @@ int main()
 				std::cout << "------------------------------------------\n->8 Cеть\n";
 
 				break;
-
+			// DISPLAY
 			case 9:
 				system("CLS");
 
@@ -207,7 +216,7 @@ int main()
 				std::cout << "------------------------------------------\n->9 Дисплей\n";
 
 				break;
-
+			// DEFAULT
 			default:
 				system("CLS");
 
@@ -216,14 +225,14 @@ int main()
 				std::cout << "--------------------------------------------" << "\n\n\n";
 
 				break;
-
+			// CREDITS
 			case 88:
 				system("CLS");
 				std::cout << "Хочу выразить свою благодарность своему другу, Dadaskis, спасибо, что решил помочь мне с этой запарой\n\n";
 				std::cout << "Источники:\n HWinfo - https://github.com/lfreist/hwinfo\n\n";
 
 				break;
-
+			// INDEX
 			case 2005:
 				system("CLS");
 				
