@@ -8,7 +8,7 @@
 #include <cassert>
 #include <vector>
 
-char ver[10] = "0.2.3(2)";
+char ver[10] = "0.2.3";
 char author[44] = "Чупиков Андрей | ostap_bender";
 int inp;
 
