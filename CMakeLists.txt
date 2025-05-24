@@ -14,6 +14,14 @@ project ("CAP")
 # Добавьте источник в исполняемый файл этого проекта.
 
 
+if (MSVC)
+    # Для Visual Studio (начиная с VS 2015)
+    add_compile_options("/utf-8")
+else()
+    # Для GCC, Clang и других Unix-компиляторов
+    add_compile_options(-finput-charset=UTF-8 -fexec-charset=UTF-8)
+endif()
+
 add_executable (CAP "CAP.cpp" )
 target_link_libraries(CAP PRIVATE lfreist-hwinfo::hwinfo)
 
@@ -23,6 +31,9 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
 
 endif()
 
+if (WIN32)
+    target_link_libraries(CAP PRIVATE kernel32)
+endif()
 
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.
 add_subdirectory(third_party/hwinfo)
