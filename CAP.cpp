@@ -67,6 +67,7 @@ void printMonitorInfo() {
 void init(const fs::path path)
 {
 	fs::path dir_path = path / "CAP";
+
 	if (fs::exists(dir_path))
 	{
 
@@ -82,6 +83,7 @@ fs::path get_appdata_path()
 #ifdef _WIN32
 	return fs::path(std::getenv("LOCALAPPDATA"));
 #else
+	return fs::path(std::getenv("LOCALAPPDATA"));
 	std::string placeholder;
 	std::cout << "!!! НЕ WINDOWS !!!";
 	return placeholder;
@@ -104,6 +106,7 @@ void StartMainDir(const std::string path)
 
 	std::string fullpath = "start " + path;
 	std::replace(fullpath.begin(), fullpath.end(), '/', '\\');
+	//fullpath = to_utf8(fullpath);
 	system(fullpath.c_str());
 
 
@@ -118,7 +121,7 @@ int main()
 
 
 	std::string file_path = get_appdata_path().string() + "/CAP/report.txt";
-
+	file_path = to_utf8(file_path);
 
 
 	DISPLAY_DEVICE dd;
@@ -144,7 +147,7 @@ int main()
 
 
 	do {
-		std::cout << "\n\n1 - CPU\t\t\t\t2 - GPU\t\t3 - Материнская плата\t\t4 - Диск\n5 - Оперативная память\t\t6 - Батарея\t7 - Оперативная система (OS)\t8 - Cеть\n9 - Дисплей\t\t\t\t\t10 - Составить отчет\n88 - Благодарность\n ";
+		std::cout << "\n\n1 - CPU\t\t\t\t2 - GPU\t\t3 - Материнская плата\t\t4 - Диск\n5 - Оперативная память\t\t6 - Батарея\t7 - Оперативная система (OS)\t8 - Cеть\n9 - Дисплей\t\t\t\t\t10- Составить отчет\n88 - Благодарность\n ";
 		std::cout << "\n>>Ввод: "; 
 		std::cin >> inp;
 
@@ -310,9 +313,8 @@ int main()
 				for (const auto& cpu : cpus)
 				{
 
-					f << "\r\n";
-					f << "=================CPU=================\r\n" << "\n";
-					f << " Производитель: \xEF\xBB\xBF" << "\t\t" << to_utf8(cpu.vendor()) << "\n";
+					f << "=================CPU=================" << "\n";
+					f << " Производитель: " << "\t\t" << to_utf8(cpu.vendor()) << "\n";
 					f << " Название: " << "\t\t\t" << to_utf8(cpu.modelName()) << "\n\n";
 
 					f << " Физические ядра: " << "\t\t" << cpu.numPhysicalCores() << "\n";
@@ -327,18 +329,19 @@ int main()
 					
 				}
 
+				f << "=================GPU=================\r\n" << "\n";
 				for (const auto& gpu : gpus)
 				{
-					f << "=================GPU=================\r\n" << "\n";
 					f << " Производитель: " << "\t\t" << to_utf8(gpu.vendor()) << "\n";
 					f << " Наименование: " << "\t\t\t" << to_utf8(gpu.name()) << "\n";
 					f << " Видеопамять: " << "\t\t\t" << bytes_to_MiB(gpu.memory_Bytes()) << " MB" << "\n";
 					f << " Версия драйвера: " << "\t\t" << gpu.driverVersion() << "\n";
 					f << "---\n";
 					f << " vendor_id: " << "\t\t\t" << gpu.vendor_id() << "\n";
-					f << " device_id: " << "\t\t\t" << gpu.device_id() << "\n\n\n";
+					f << " device_id: " << "\t\t\t" << gpu.device_id() << "\n\n";
 				}
-			
+				std::cout << "\n\n\n";
+
 				f << "==========Материнская плата==========\r\n" << "\n";
 				f << " Производитель: " << "\t\t" << to_utf8(mainboard.vendor()) << "\n";
 				f << " Наименование: " << "\t\t\t" << to_utf8(mainboard.name()) << "\n";
