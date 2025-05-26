@@ -6,7 +6,7 @@
 #include <vector>
 #include <filesystem>
 
-std::string ver = "0.3.0 beta";
+std::string ver = "0.3.0";
 std::string author = "Чупиков Андрей | ostap_bender";
 int inp;
 
@@ -147,7 +147,7 @@ int main()
 
 
 	do {
-		std::cout << "\n\n1 - CPU\t\t\t\t2 - GPU\t\t3 - Материнская плата\t\t4 - Диск\n5 - Оперативная память\t\t6 - Батарея\t7 - Оперативная система (OS)\t8 - Cеть\n9 - Дисплей\t\t\t\t\t10- Составить отчет\n88 - Благодарность\n ";
+		std::cout << "\n\n1 - CPU\t\t\t\t2 - GPU\t\t3 - Материнская плата\t\t4 - Диск\n5 - Оперативная память\t\t6 - Батарея\t7 - Оперативная система (OS)\t8 - Cеть\n9 - Дисплей\t\t\t\t\t10- Составить отчет\n\n88 - Благодарность\n ";
 		std::cout << "\n>>Ввод: "; 
 		std::cin >> inp;
 
