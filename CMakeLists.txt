@@ -33,6 +33,8 @@ if (WIN32)
     target_link_libraries(CAP PRIVATE kernel32)
 endif()
 
-add_subdirectory(third_party/CAPL)
+set(target_h capl.h)
+set(target_cpp capl.cpp)
+
 add_subdirectory(third_party/hwinfo)
 include_directories(third_party/hwinfo/include)
