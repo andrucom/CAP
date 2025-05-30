@@ -11,8 +11,6 @@ endif()
 
 project ("CAP")
 
-# Добавьте источник в исполняемый файл этого проекта.
-
 
 if (MSVC)
     # Для Visual Studio (начиная с VS 2015)
@@ -22,7 +20,7 @@ else()
     add_compile_options(-finput-charset=UTF-8 -fexec-charset=UTF-8)
 endif()
 
-add_executable (CAP "CAP.cpp" )
+add_executable (CAP "CAP.cpp"  "third_party/CAPL/capl.cpp")
 target_link_libraries(CAP PRIVATE lfreist-hwinfo::hwinfo)
 
 
@@ -35,6 +33,6 @@ if (WIN32)
     target_link_libraries(CAP PRIVATE kernel32)
 endif()
 
-# TODO: Добавьте тесты и целевые объекты, если это необходимо.
+add_subdirectory(third_party/CAPL)
 add_subdirectory(third_party/hwinfo)
 include_directories(third_party/hwinfo/include)
